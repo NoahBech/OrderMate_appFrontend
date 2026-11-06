@@ -22,4 +22,18 @@ npm run lint
 npm run build
 ```
 
-The build is written to `dist/`. Use `npm run preview` to preview that build.
+`npm run build` creates the new build in `../production_new/`, while the current
+`../production/` remains available. Once the build and URL replacement succeed,
+the current directory is renamed to `../production_old/`, and the new directory
+is renamed to `../production/`. Only then is `../production_old/` deleted.
+
+A failed build leaves the current production build untouched. If the directory
+swap fails, the previous build is restored. Concurrent builds are blocked by
+`../production.build-lock/`; an interrupted build may leave that lock behind,
+which can be removed once no build is running.
+
+During the build, `https://dev.ordermate.com` is replaced with
+`https://ordermate.com` in generated text files and copied public text files.
+Development source files and binary assets are preserved.
+
+Use `npm run preview` to preview the production build.

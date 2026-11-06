@@ -6,9 +6,9 @@
   "scripts": {
     "start": "vite --mode development",
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build.js",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview --outDir ../production"
   },
   "dependencies": {
     "react": "^19.3.1",
